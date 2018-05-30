@@ -26,13 +26,13 @@ public class PlayerView : View<ApplicationGameManager> {
 
         private float amountTofMove;
         private Rigidbody rBody;
-
+        private bool isDead;
         /// <summary>
         /// Jump this instance.
         /// </summary>
         public void Jump()
 		{
-			
+            rBody.AddForce(new Vector3(0, 30, 0));
         }      
 
         /// <summary>
@@ -40,14 +40,17 @@ public class PlayerView : View<ApplicationGameManager> {
         /// </summary>
         public void SetupDirection()
         {
-            if (app.model.playerInfo.PlayerDirection == Vector3.forward)
+            if (!isDead)
             {
-                app.model.playerInfo.PlayerDirection = Vector3.left;
-            }
-            else
-            {
-                app.model.playerInfo.PlayerDirection = Vector3.forward;
-            }
+                if (app.model.playerInfo.PlayerDirection == Vector3.forward)
+                {
+                    app.model.playerInfo.PlayerDirection = Vector3.left;
+                }
+                else
+                {
+                    app.model.playerInfo.PlayerDirection = Vector3.forward;
+                }
+            }          
 
         }
 
@@ -65,6 +68,7 @@ public class PlayerView : View<ApplicationGameManager> {
 		/// </summary>
 		public void Initialize()
 		{
+            isDead = false;
             rBody = gameObject.GetComponent<Rigidbody>();
             app.model.playerInfo.PlayerDirection = Vector3.zero;
             Utils.Log("Initialization of Player");
@@ -75,12 +79,28 @@ public class PlayerView : View<ApplicationGameManager> {
         /// </summary>
         /// <param name="col">Col.</param> 
         void OnTriggerEnter(Collider other)
-		{
-            //Notify(GameEventNotification.PickerOff, other.gameObject);
+		{            
             if (other.tag.Equals("Picker"))
             {
-                app.model.entityDetails.currentTile.transform.GetChild(1).gameObject.SetActive(false);
+                Notify(GameEventNotification.PickerOff,other.gameObject);
+                //other.gameObject.SetActive(false);
             }
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            if (other.tag.Equals("Tile"))
+            {
+                RaycastHit hit;
+
+                Ray downRay = new Ray(transform.position, -Vector3.up);
+                if(!Physics.Raycast(downRay, out hit))
+                {
+                    Notify(GameEventNotification.StopCameraFollow);
+                    isDead = true;
+                }
+            }
+ 
         }
     }
 }

@@ -27,5 +27,6 @@ namespace EndlessRunner{
         public GameObject currentTile;
         public GameObject[] tileSet;
         public Transform tileParent;
+        public GameObject destroyedParticleSystems;
     }
 }

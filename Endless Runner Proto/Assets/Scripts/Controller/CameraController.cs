@@ -26,11 +26,12 @@ public class CameraController : Controller<ApplicationGameManager> {
 
         private Transform player; //Track the Target i.e Player
         private Vector3 offset; //Private variable to store the offset distance between the player and camera
-
+        public bool isFollowing;
         // Use this for initialization
         private void Initialize () {
 
             Utils.Log("Initialization of Camera");
+            isFollowing = true;
             player = GameObject.FindGameObjectWithTag ("Player").transform;
             //Calculate and store the offset value by getting the distance between the player's position and camera's position.
             offset = transform.position - player.transform.position;
@@ -45,6 +46,7 @@ public class CameraController : Controller<ApplicationGameManager> {
                 FindPlayer();
                 return;
             }
+            if(isFollowing)
             // Set the position of the camera's transform to be the same as the player's, but offset by the calculated offset distance.
             transform.position = player.transform.position + offset;
         }
@@ -64,7 +66,12 @@ public class CameraController : Controller<ApplicationGameManager> {
 
                     Utils.Log("Find Player");
                     Initialize();
-                    break;               
+                    break;
+                case GameEventNotification.StopCameraFollow:
+
+                    Utils.Log("Stop following Player");
+                    isFollowing = false;
+                    break;
             }
         }
         /// <summary>

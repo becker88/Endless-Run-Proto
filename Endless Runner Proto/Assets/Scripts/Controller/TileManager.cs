@@ -52,6 +52,7 @@ namespace EndlessRunner{
 
                 leftTile.Peek().name    = "LeftTile";
                 topTile.Peek().name     = "TopTile";
+
                 leftTile.Peek().transform.SetParent(app.model.entityDetails.tileParent);
                 topTile.Peek().transform.SetParent(app.model.entityDetails.tileParent);
 
@@ -113,7 +114,7 @@ namespace EndlessRunner{
             }
 
             int spawinPicker = Random.Range(0, 10);
-            if(spawinPicker == 0)
+            if (spawinPicker == 0)
             {
                 app.model.entityDetails.currentTile.transform.GetChild(1).gameObject.SetActive(true);
             }
@@ -147,9 +148,9 @@ namespace EndlessRunner{
 
                 case GameEventNotification.PickerOff:
                     Utils.Log("Off the Picker");
-                    GameObject pick = (GameObject)p_data[0];
-                    if(pick.tag.Equals("Picker"))
-                    app.model.entityDetails.currentTile.transform.GetChild(1).gameObject.SetActive(false);
+                    GameObject picker = (GameObject)p_data[0];
+                    picker.SetActive(false);
+                    Instantiate(app.model.entityDetails.destroyedParticleSystems, picker.transform.position, Quaternion.identity);
                     break;
             }
         }

@@ -127,7 +127,7 @@ namespace Becker.MVC
         virtual protected void Start() {
             __async_loads = new List<UnityEngine.AsyncOperation>();
             __async_args = new List<string>();
-            if (m_first_scene) { m_first_scene = false; OnLevelLoaded(levelId); }
+            if (m_first_scene) { m_first_scene = false; OnLevelWasLoaded(levelId); }
             Notify("scene.start", new object[] { levelName, levelId });
         }
 
@@ -135,7 +135,7 @@ namespace Becker.MVC
         /// Capture the level loaded event and notify controllers for 'starting' purposes.
         /// </summary>
         /// <param name="p_level"></param>
-        private void OnLevelLoaded(int p_level) {
+        private void OnLevelWasLoaded(int p_level) {
             Notify("scene.load", new object[] { levelName, levelId });
         }
 

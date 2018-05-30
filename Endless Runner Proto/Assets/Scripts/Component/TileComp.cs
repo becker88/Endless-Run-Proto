@@ -22,7 +22,7 @@ using Becker.MVC;
 
 namespace EndlessRunner{
 
-    public class TileScript : View<ApplicationGameManager>
+    public class TileComp : View<ApplicationGameManager>
     {
 
         void OnTriggerExit(Collider other)

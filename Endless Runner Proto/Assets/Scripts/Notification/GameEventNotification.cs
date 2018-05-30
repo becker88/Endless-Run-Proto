@@ -22,7 +22,7 @@ namespace EndlessRunner{
 	
 public class GameEventNotification {
 
-		public const string GameStart     	= "game.start";
+        public const string GameStart     	= "game.start";
 		public const string GameOver  		= "game.over";
 		public const string SceneLoad     	= "scene.load";
 		public const string ScoreUpdate     = "score.update";
@@ -32,5 +32,6 @@ public class GameEventNotification {
         public const string PathFallDown    = "fall.down";
         public const string FindPlayer      = "find.player";
         public const string PickerOff       = "off.picker";
+        public const string StopCameraFollow = "stop.camera.follow";
     }
 }

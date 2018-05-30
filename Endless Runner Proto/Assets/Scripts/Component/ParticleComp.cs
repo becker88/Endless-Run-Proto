@@ -14,27 +14,31 @@
 // limitations under the License.
 // </copyright>
 
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Becker.MVC;
 
-namespace EndlessRunner{
 
-    public class TileScript : View<ApplicationGameManager>
+namespace EndlessRunner
+{
+    public class ParticleComp : View<ApplicationGameManager>
     {
 
-        void OnTriggerExit(Collider other)
+        private ParticleSystem ps;
+        // Use this for initialization
+        void Start()
         {
-            if (other.tag.Equals("Player"))
-            {
-                //Utils.Log("Spwan Tiles");
-                Notify(GameEventNotification.SpawnPath);
-                Notify(GameEventNotification.PathFallDown, this.gameObject);
-            }            
+            ps = this.gameObject.GetComponent<ParticleSystem>();
         }
 
-        
+        // Update is called once per frame
+        void Update()
+        {
+            if (!ps.isPlaying)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 }

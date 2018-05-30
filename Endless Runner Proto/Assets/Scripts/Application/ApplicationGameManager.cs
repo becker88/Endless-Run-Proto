@@ -28,9 +28,8 @@ public class ApplicationGameManager : BaseApplication<GameModel,GameView,GameCon
         //Call before Start
         void Awake()
         {
-            Utils.IsDebugEnable = true;
+            Utils.IsDebugEnable = false;
             view.Initialize();
-            controller.Initialize();
         }
 
     }

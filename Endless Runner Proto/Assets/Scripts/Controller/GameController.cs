@@ -22,14 +22,7 @@ using Becker.MVC;
 namespace EndlessRunner{
 	
 public class GameController : Controller<ApplicationGameManager>{
-
-        private CameraController c_camCtrl;//Register Camera Controller
-
-        /// <summary>
-        /// Reference to the Camera Controller.
-        /// </summary>
-        public CameraController camCtrl { get { return GameObject.FindObjectOfType<CameraController>(); } }//return m_camCtrl = Assert<CameraController>(m_camCtrl);
-
+       
 
         /// <summary>
 		/// Initialize all Components.
@@ -49,6 +42,10 @@ public class GameController : Controller<ApplicationGameManager>{
             if (Input.GetMouseButtonDown(0))
             {
                 app.view.player.SetupDirection();
+            }
+            if (Input.GetKey(KeyCode.Space))
+            {
+                app.view.player.Jump();
             }
 
             app.view.player.Run();           
@@ -73,6 +70,10 @@ public class GameController : Controller<ApplicationGameManager>{
         {
             switch (p_event)
             {
+                case GameEventNotification.SceneLoad:
+                    Utils.Log("Endless Run [" + p_data[0] + "][" + p_data[1] + "] loaded");
+                    Initialize();
+                    break;
 
                 case GameEventNotification.ScoreUpdate:
 
@@ -82,7 +83,6 @@ public class GameController : Controller<ApplicationGameManager>{
 			    case GameEventNotification.GameOver:
 
 				    Utils.Log("Oops...!!Game Over...!!..Ball Hit in the Wrong Color");
-                    ReloadGame();
                     break;
             }	
 		}
