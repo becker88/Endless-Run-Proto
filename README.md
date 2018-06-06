@@ -98,9 +98,9 @@ To help alleviate these two issues, I came up with a modified pattern I call AMV
 ![alt text](https://uploads.toptal.io/blog/image/91487/toptal-blog-image-1438268986192-dc455bb88c34cd8c689ae9edb33f5eba.jpg)
 
 
-    Application - Single entry point to your application and container of all critical instances and application-related data.
-    MVC - You should know this by now. :)
-    Component - Small, well-contained script that can be reused.
+Application - Single entry point to your application and container of all critical instances and application-related data.
+MVC - You should know this by now. :)
+Component - Small, well-contained script that can be reused.
 
 These two modifications have satisfied my needs for all projects I’ve used them in.
 
@@ -122,25 +122,33 @@ Usually this happens organically while I think about the software architecture o
 
 # Models
 
-    Hold the application’s core data and state, such as player health or gun ammo.
-    Serialize, deserialize, and/or convert between types.
-    Load/save data (locally or on the web).
-    Notify Controllers of the progress of operations.
-    Store the Game State for the Game’s Finite State Machine.
-    Never access Views.
+ 1. Hold the application’s core data and state, such as player health or gun ammo.
+ 2. Serialize, deserialize, and/or convert between types.
+ 3. Load/save data (locally or on the web).
+ 4. Notify Controllers of the progress of operations.
+ 5. Store the Game State for the Game’s Finite State Machine.
+ 6. Never access Views.
 
 # Views
 
-    Can get data from Models in order to represent up-to-date game state to the user. For example, a View method player.Run() can internally use model.speed to manifest the player abilities.
-    Should never mutate Models.
-    Strictly implements the functionalities of its class. For example:
-        A PlayerView should not implement input detection or modify the Game State.
-        A View should act as a black box that has an interface, and notifies of important events.
-        Does not store core data (like speed, health, lives,…).
+  1. Can get data from Models in order to represent up-to-date game state to the user. For example, a View method player.Run()       can internally use model.speed to manifest the player abilities.
+  2. Should never mutate Models.
+  3. Strictly implements the functionalities of its class. For example:
+  4. A PlayerView should not implement input detection or modify the Game State.
+  5. A View should act as a black box that has an interface, and notifies of important events.
+  6. Does not store core data (like speed, health, lives,…).
 
 # Controllers
 
-    Do not store core data.
-    Can sometimes filter notifications from undesired Views.
-    Update and use the Model’s data.
-    Manages Unity’s scene workflow.
+  1. Do not store core data.
+  2. Can sometimes filter notifications from undesired Views.
+  3. Update and use the Model’s data.
+  4. Manages Unity’s scene workflow.
+  
+  # Conclusion
+
+There are tons of software patterns out there. In this post I tried to show the one that helped me most in past projects. Developers should always absorb new knowledge, but always question it, too. I hope this tutorial helps you to learn something new, and at the same time, serves as a stepping stone as you develop your own style.
+
+Also, I really encourage you to research other patterns and find the one that suits you best.
+
+If you like the AMVCC pattern and would like to test it out, don’t forget to try out my library, Unity MVC, which contains all the core classes necessary to start an AMVCC application.
