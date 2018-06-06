@@ -112,7 +112,7 @@ This example has shown a simple use case for the AMVCC pattern. Adjusting your w
 
 In bigger projects, developers will be faced with more complex scenarios and doubts about whether something should be a View or a Controller, or if a given class should be more thoroughly separated in smaller ones.
 
-# Rules of Thumb (by Eduardo)
+# Rules of Thumb (by Eduardo Dias da Costa, Brazil(a well known Developer))
 
 There isn’t any “Universal Guide for MVC sorting” anywhere. But there are some simple rules that I typically follow to help me determine whether to define something as a Model, View, or Controller, and also when to split a given class in smaller pieces.
 
