@@ -152,3 +152,5 @@ There are tons of software patterns out there. In this post I tried to show the 
 Also, I really encourage you to research other patterns and find the one that suits you best.
 
 If you like the AMVCC pattern and would like to test it out, don’t forget to try out my library, Unity MVC, which contains all the core classes necessary to start an AMVCC application.
+
+For more information plese see the link https://www.toptal.com/unity-unity3d/unity-with-mvc-how-to-level-up-your-game-development
