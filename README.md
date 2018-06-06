@@ -59,9 +59,9 @@ Being one level above OOP, EC helps to defragment and better organize your code 
 
 One way to avoid a mess is to impose some additional guidelines on top of Entity-Component. For example, one way I like to think about software is to divide it up into three different categories:
 
-    Some handle the raw data, allowing it to be created, read, updated, deleted or searched (i.e., the CRUD concept).
-    Others implement the interface for other elements to interact with, detecting events related to their scope and triggering notifications when they occur.
-    Finally, some elements are responsible for receiving these notifications, making business logic decisions, and deciding how the data should be manipulated.
+ Some handle the raw data, allowing it to be created, read, updated, deleted or searched (i.e., the CRUD concept).
+ Others implement the interface for other elements to interact with, detecting events related to their scope and triggering   notifications when they occur.
+ Finally, some elements are responsible for receiving these notifications, making business logic decisions, and deciding how the data should be manipulated.
 
 Fortunately, we already have a pattern that behaves in this exact way.
 
