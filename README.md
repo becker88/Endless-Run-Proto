@@ -1,7 +1,8 @@
 # Endless Run Prototype
 A Prototype of Endless Run Game with AMVCC Pattern
 
-#Unity with MVC: How to Level Up Your Game Development
+[create an anchor](#Unity with MVC: How to Level Up Your Game Development)
+
 First time programmers usually start learning the trade with the classic Hello World program. From there, bigger and bigger assignments are bound to follow. Each new challenge drives home an important lesson:
 
 The bigger the project, the bigger the spaghetti.
@@ -16,13 +17,13 @@ In this tutorial I’ll relate my experience with the popular Unity game develop
 
 I’ll start by explaining a bit of Unity’s base architecture, the Entity-Component pattern. Then I’ll move on to explain how MVC fits on top of it, and use a little mock project as example.
 
-#Motivation
+[create an anchor](#Motivation)
 
 In the literature of software we will find a great number of design patterns. Even though they have a set of rules, developers will usually do a little rule-bending in order to better adapt the pattern to their specific problem.
 
 This “freedom of programming” is proof that we haven’t yet found a single, definitive method for designing software. Thus, this article isn’t meant to be the ultimate solution for your problem, but rather, to show the benefits and possibilities of two well known patterns: Entity-Component and Model-View-Controller.
 
-#The Entity-Component Pattern
+[create an anchor](#The Entity-Component Pattern)
 
 Entity-Component (EC) is a design pattern where we first define the hierarchy of elements that make up the application (Entities), and later, we define the features and data each will contain (Components). In more “programmer” terms, an Entity can be an object with an array of 0 or more Components. Let’s depict an Entity like this:
 
