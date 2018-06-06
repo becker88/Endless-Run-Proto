@@ -1,7 +1,7 @@
 # Endless Run Prototype
 A Prototype of Endless Run Game with AMVCC Pattern
 
-# Unity with MVC: How to Level Up Your Game Development)
+# Unity with MVC: How to Level Up Your Game Development
 
 First time programmers usually start learning the trade with the classic Hello World program. From there, bigger and bigger assignments are bound to follow. Each new challenge drives home an important lesson:
 
@@ -86,11 +86,10 @@ Still, as we’ve discussed, we can hit the “too many features” problem and 
 
 Now, I would like to introduce two small modifications to the generic MVC pattern, which help adapt it to unique situations I’ve come across building Unity projects with MVC:
 
-
-    The MVC class references easily get scattered throughout the code.
-        Within Unity, developers typically must drag and drop instances around to make them accessible, or else reach them through cumbersome find statements like GetComponent( ... ).
-        Lost-reference hell will ensue if Unity crashes or some bug makes all the dragged references disappear.
-        This makes it necessary to have a single root reference object, through which all instances in the Application can be reached and recovered.
+The MVC class references easily get scattered throughout the code.
+   Within Unity, developers typically must drag and drop instances around to make them accessible, or else reach them through cumbersome find statements like GetComponent( ... ).
+Lost-reference hell will ensue if Unity crashes or some bug makes all the dragged references disappear.
+   This makes it necessary to have a single root reference object, through which all instances in the Application can be reached and recovered.
     Some elements encapsulate general functionality that should be highly reusable, and which does not naturally fall into one of the three main categories of Model, View, or Controller. These I like to call simply Components. They are also “Components” in the Entity-Component sense, but merely act as helpers in the MVC framework.
         For example, a Rotator Component, which only rotates things by a given angular velocity and doesn’t notify, store, or decide anything.
 
