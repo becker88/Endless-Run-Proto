@@ -26,7 +26,7 @@ public class CameraController : Controller<ApplicationGameManager> {
 
         private Transform player; //Track the Target i.e Player
         private Vector3 offset; //Private variable to store the offset distance between the player and camera
-        public bool isFollowing;
+        private bool isFollowing;
         // Use this for initialization
         private void Initialize () {
 

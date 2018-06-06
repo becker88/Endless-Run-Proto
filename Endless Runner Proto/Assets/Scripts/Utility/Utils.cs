@@ -22,10 +22,12 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 
 
-namespace EndlessRunner{
+namespace EndlessRunner
+{
 
 
-    public static class Utils  {
+    public static class Utils
+    {
 
         private static readonly string logPrefix = "[Endless Runner] ";
         private static bool isDebugEnable;
@@ -42,7 +44,7 @@ namespace EndlessRunner{
             if (isDebugEnable)
             {
                 Debug.Log(logPrefix + string.Format(format, list));
-            }          
+            }
         }
 
         /// <summary>
@@ -55,7 +57,7 @@ namespace EndlessRunner{
             if (isDebugEnable)
             {
                 Debug.LogWarning(logPrefix + string.Format(format, list));
-            }          
+            }
         }
 
         /// <summary>
@@ -68,7 +70,7 @@ namespace EndlessRunner{
             if (isDebugEnable)
             {
                 throw new System.Exception(logPrefix + string.Format(format, list));
-            }           
+            }
         }
 
         /// <summary>
@@ -128,9 +130,14 @@ namespace EndlessRunner{
             if (!Directory.Exists(pathToSave))
             {
                 Directory.CreateDirectory(pathToSave);
+
+                // If the  File doesn't exist, create and Write it.
+                if (!File.Exists(pathToSave + fileName + fileExtension))
+                {
+                    File.WriteAllText(pathToSave + fileName + fileExtension, dataToWrite);
+                }
             }
-            // If the  File doesn't exist, create and Write it.
-            else if (!File.Exists(pathToSave + fileName + fileExtension))
+            else
             {
                 File.WriteAllText(pathToSave + fileName + fileExtension, dataToWrite);
             }

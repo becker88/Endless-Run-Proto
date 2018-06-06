@@ -22,7 +22,8 @@ using Becker.MVC;
 
 namespace EndlessRunner{
 
-    public class EntityDetails : Model<ApplicationGameManager> {
+    public class EntityDetails : Model<ApplicationGameManager>
+    {
 
         public GameObject currentTile;
         public GameObject[] tileSet;

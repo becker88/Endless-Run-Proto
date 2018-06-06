@@ -29,7 +29,10 @@ public class GameController : Controller<ApplicationGameManager>{
 		/// </summary>
 		public void Initialize()
         {
-            app.view.uiView.uiTitle.text = "ZIG ZAG";
+            app.model.IsGameOver = false;
+            app.model.CurrentScore = 0;
+            app.model.uiComp.uiTitle.text = "ZIG ZAG";
+            app.model.uiComp.scoreText.text = "Score: 0";
             Notify(GameEventNotification.FindPlayer);            
             Notify(GameEventNotification.RandPathGen);
         }
@@ -39,16 +42,21 @@ public class GameController : Controller<ApplicationGameManager>{
         /// </summary>
         void Update()
 		{
-            if (Input.GetMouseButtonDown(0))
+            if (!app.model.IsGameOver)
             {
-                app.view.player.SetupDirection();
-            }
-            if (Input.GetKey(KeyCode.Space))
-            {
-                app.view.player.Jump();
-            }
+                if (Input.GetMouseButtonDown(0))
+                {
+                    app.view.player.SetupDirection();
+                    ScoreNoralUpdate();
+                }
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    app.view.player.Jump();
+                }
 
-            app.view.player.Run();           
+                app.view.player.Run();
+            }
+                     
         }
 
        
@@ -61,6 +69,36 @@ public class GameController : Controller<ApplicationGameManager>{
         }
 
         /// <summary>
+        /// Special Score Update
+        /// </summary>
+        private void ScoreSpecialUpdate()
+        {
+            app.model.CurrentScore +=app.model.SpecialScore;
+            app.model.uiComp.scoreText.text = "Score: "+app.model.CurrentScore.ToString();
+        }
+
+        /// <summary>
+        /// Normar Score Update
+        /// </summary>
+        private void ScoreNoralUpdate()
+        {
+            app.model.CurrentScore ++;
+            app.model.uiComp.scoreText.text = "Score: " + app.model.CurrentScore.ToString();
+        }
+
+        /// <summary>
+        /// Ctrete highscore Histoy
+        /// </summary>
+        private void CreateScoreHistory()
+        {
+            if (app.model.CurrentScore > app.model.HighScore)
+            {
+                app.model.HighScore = app.model.CurrentScore;
+            }
+        }
+
+
+        /// <summary>
         /// Handle notifications from the application.
         /// </summary>
         /// <param name="p_event"></param>
@@ -71,21 +109,27 @@ public class GameController : Controller<ApplicationGameManager>{
             switch (p_event)
             {
                 case GameEventNotification.SceneLoad:
+
                     Utils.Log("Endless Run [" + p_data[0] + "][" + p_data[1] + "] loaded");
                     Initialize();
                     break;
 
                 case GameEventNotification.ScoreUpdate:
 
+                    ScoreSpecialUpdate();
                     Utils.Log("Score Update");
 			        break;
 
-			    case GameEventNotification.GameOver:
+                case GameEventNotification.GameOver:
 
-				    Utils.Log("Oops...!!Game Over...!!..Ball Hit in the Wrong Color");
+                    app.model.IsGameOver = true;
+                    CreateScoreHistory();
+                    app.view.uiView.DisplyScoreTable();
+                    Utils.Log("Oops...!!Game Over...!!..Ball Hit in the Wrong Color");
                     break;
             }	
 		}
 
- 	}
+        
+    }
 }

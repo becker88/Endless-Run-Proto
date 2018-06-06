@@ -18,6 +18,7 @@
 using UnityEngine;
 using System.Collections;
 using Becker.MVC;
+using UnityEngine.UI;
 
 namespace EndlessRunner{
 	
@@ -83,10 +84,16 @@ public class PlayerView : View<ApplicationGameManager> {
             if (other.tag.Equals("Picker"))
             {
                 Notify(GameEventNotification.PickerOff,other.gameObject);
+                Notify(GameEventNotification.ScoreUpdate);
+                CreateCombatText(this.transform.position, app.model.SpecialScore.ToString(), true);
                 //other.gameObject.SetActive(false);
             }
         }
 
+        /// <summary>
+        /// Instantly Checking that if the Player is Falling Down or Not
+        /// </summary>
+        /// <param name="other"></param>
         void OnTriggerExit(Collider other)
         {
             if (other.tag.Equals("Tile"))
@@ -97,10 +104,26 @@ public class PlayerView : View<ApplicationGameManager> {
                 if(!Physics.Raycast(downRay, out hit))
                 {
                     Notify(GameEventNotification.StopCameraFollow);
+                    Notify(GameEventNotification.GameOver);
                     isDead = true;
                 }
             }
- 
+        }
+
+        /// <summary>
+		/// Create Combats text.
+		/// </summary>
+		/// <param name="position">Position.</param>
+		/// <param name="newText">New text.</param>
+		public void CreateCombatText(Vector3 position, string data, bool iscrit)
+        {
+            GameObject sct = (GameObject)Instantiate(app.model.combatInfo.scoreTextPrefab, position, Quaternion.identity);
+
+            sct.transform.SetParent(app.model.combatInfo.canvasTransform);
+            sct.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            sct.GetComponent<Text>().text = "+"+data;
+            sct.GetComponent<RectTransform>().localPosition = new Vector3(-83, -50, 0);
+            sct.GetComponent<CombatText>().Initialize(app.model.combatInfo.Speed, app.model.combatInfo.direction, app.model.combatInfo.FadeTime, iscrit);
         }
     }
 }

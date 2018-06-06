@@ -25,7 +25,8 @@ public class GameView : View<ApplicationGameManager> {
 
 
         private PlayerView m_player; // Register Player View
-        private UIComponent m_uiComp;// Register UI(Canvas) Component
+        private UIView m_uiView;    //Register UI View
+        private CombatText m_Combat;//Register Combat Text
 
         /// <summary>
         /// Reference to the Player View.
@@ -33,9 +34,14 @@ public class GameView : View<ApplicationGameManager> {
         public PlayerView player { get { return m_player = Assert<PlayerView>(m_player); } }
 
         /// <summary>
-        /// Reference to the UIComponent View.
+        /// Reference to the UI View.
         /// </summary>
-        public UIComponent uiView { get { return m_uiComp = Assert<UIComponent>(m_uiComp); } }
+        public UIView uiView { get { return m_uiView = Assert<UIView>(m_uiView); } }
+
+        /// <summary>
+        /// Reference to the Combat Text View.
+        /// </summary>
+        public CombatText combatText { get { return m_Combat = Assert<CombatText>(m_Combat); } }
 
         /// <summary>
         /// Initialize all Components.

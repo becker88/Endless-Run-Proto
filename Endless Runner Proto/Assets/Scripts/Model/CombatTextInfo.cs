@@ -1,4 +1,4 @@
-﻿// <copyright file="GameController.cs" company="Zabingo Softwares">
+﻿// <copyright file="PlayerView.cs" company="Zabingo Softwares">
 // Copyright (C) 2017 Zabingo Softwares.All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,24 +14,25 @@
 // limitations under the License.
 // </copyright>
 
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Becker.MVC;
 
 namespace EndlessRunner{
 
+    public class CombatTextInfo : Model<ApplicationGameManager>
+    {
+        public GameObject scoreTextPrefab;
+        public RectTransform canvasTransform;
+        [HideInInspector]
+        public Vector3 direction = new Vector3(0, 1, 0);
 
-    public class UIComponent : Model<ApplicationGameManager>  {
+        private float speed = 30f;
+        private float fadeTime = 1f;
 
-        public Text uiTitle;
-        public Text scoreText;
-        public Text bestScore;
-        public Text currentScore;
-        public GameObject resetButton;
-        public GameObject gameOver;
-       
+        public float Speed { get { return speed; } }
+
+        public float FadeTime { get { return fadeTime; } }
     }
 }
