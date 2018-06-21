@@ -46,9 +46,9 @@ namespace EndlessRunner{
         /// <summary>
         /// Display and View Scores
         /// </summary>
-        public void DisplyScoreTable()
+        public void DisplyScoreTable(int hiScore)
         {
-            StartCoroutine(ArrengeScoreTable(app.model.HighScore, app.model.CurrentScore));
+            StartCoroutine(ArrengeScoreTable(hiScore, app.model.CurrentScore));
         }
 
 
@@ -60,9 +60,9 @@ namespace EndlessRunner{
             int startOne = hiScore;
             int startTwo = score;
 
-            for (float timer = 0; timer < 3.0f; timer += Time.deltaTime)
+            for (float timer = 0; timer < 10.0f; timer += Time.deltaTime)
             {
-                float progress = timer / 3.0f;
+                float progress = timer / 1.0f;
 
                 hiScore = (int)Mathf.Lerp(startOne, targetHiScore, progress);
                 app.model.uiComp.bestScore.text = hiScore.ToString();

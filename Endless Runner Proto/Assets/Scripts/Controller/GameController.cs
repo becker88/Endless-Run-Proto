@@ -18,6 +18,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using Becker.MVC;
+using System.IO;
 
 namespace EndlessRunner{
 	
@@ -29,12 +30,24 @@ public class GameController : Controller<ApplicationGameManager>{
 		/// </summary>
 		public void Initialize()
         {
+            LoadScoreData();
             app.model.IsGameOver = false;
             app.model.CurrentScore = 0;
             app.model.uiComp.uiTitle.text = "ZIG ZAG";
             app.model.uiComp.scoreText.text = "Score: 0";
-            Notify(GameEventNotification.FindPlayer);            
+            Notify(GameEventNotification.FindPlayer);
             Notify(GameEventNotification.RandPathGen);
+        }
+
+        /// <summary>
+        /// Initial Load Score Data
+        /// </summary>
+        private void LoadScoreData()
+        {
+            if (PlayerPrefs.HasKey("HighScore"))
+            {
+                app.model.HighScore = PlayerPrefs.GetInt("HighScore");
+            }
         }
 
         /// <summary>
@@ -47,7 +60,7 @@ public class GameController : Controller<ApplicationGameManager>{
                 if (Input.GetMouseButtonDown(0))
                 {
                     app.view.player.SetupDirection();
-                    ScoreNoralUpdate();
+                    ScoreNormalUpdate();
                 }
                 if (Input.GetKey(KeyCode.Space))
                 {
@@ -80,7 +93,7 @@ public class GameController : Controller<ApplicationGameManager>{
         /// <summary>
         /// Normar Score Update
         /// </summary>
-        private void ScoreNoralUpdate()
+        private void ScoreNormalUpdate()
         {
             app.model.CurrentScore ++;
             app.model.uiComp.scoreText.text = "Score: " + app.model.CurrentScore.ToString();
@@ -95,6 +108,7 @@ public class GameController : Controller<ApplicationGameManager>{
             {
                 app.model.HighScore = app.model.CurrentScore;
             }
+            PlayerPrefs.SetInt("HighScore", app.model.HighScore);
         }
 
 
@@ -124,7 +138,8 @@ public class GameController : Controller<ApplicationGameManager>{
 
                     app.model.IsGameOver = true;
                     CreateScoreHistory();
-                    app.view.uiView.DisplyScoreTable();
+                    LoadScoreData();
+                    app.view.uiView.DisplyScoreTable(app.model.HighScore);
                     Utils.Log("Oops...!!Game Over...!!..Ball Hit in the Wrong Color");
                     break;
             }	

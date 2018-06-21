@@ -29,6 +29,7 @@ namespace EndlessRunner{
         private int highScore = 0;
         private int specialScore = 5;
         private bool isGameOver = false;
+
         // Register Player Info    
         private PlayerInfo m_playerInfo;
         // Register Entity Details
@@ -58,7 +59,6 @@ namespace EndlessRunner{
         /// </summary>
         public CombatTextInfo combatInfo { get { return m_combatInfo = Assert<CombatTextInfo>(m_combatInfo); } }
 
-       
 
         /// <summary>
         /// Current Score
