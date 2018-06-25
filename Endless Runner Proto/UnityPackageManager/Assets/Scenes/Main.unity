@@ -88,7 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-  m_LightingDataAsset: {fileID: 112000002, guid: 61a59a377d5fb8046bf30ea72333ca3a,
+  m_LightingDataAsset: {fileID: 112000002, guid: 536544d6fb5df5d4bb1373d307c0706d,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -296,7 +296,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!135 &157118431
 SphereCollider:
