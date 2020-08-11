@@ -1,5 +1,5 @@
-﻿// <copyright file="UIView.cs" company="Zabingo Softwares">
-// Copyright (C) 2017 Zabingo Softwares.All Rights Reserved.
+﻿// <copyright file="UIView.cs" company="Matrix Becker">
+// Copyright (C) 2017 Matrix Becker.All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
